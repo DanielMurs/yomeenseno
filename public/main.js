@@ -37,10 +37,24 @@ const runCarousel = (index)=>{
     }
 }
 
+//intervalo que avanza el slider cada 5 segundos
+const intervalTime = setInterval(()=>{
+    if(pageCarousel < 3){
+        pageCarousel++
+    }else{
+        pageCarousel = 1
+    }
+    
+    runIndicator(pageCarousel)
+},5000 )
+
 //events
 for(let el of indicators){
     el.addEventListener('click',() => runIndicator(Array.from(indicators).indexOf(el) + 1) )
 }
+
+window.addEventListener('load',()=> intervalTime)
+
 
 ////login/////
 const btnLogin = document.getElementById('btnLogin')
@@ -52,6 +66,7 @@ const showLogin = () =>{
     containerHello.classList.add('d-none')
     buttonsHello.classList.add('d-none')
     containerLogin.classList.remove('d-none')
+    clearInterval(intervalTime)
 }
 
 btnLogin.addEventListener('click', showLogin )

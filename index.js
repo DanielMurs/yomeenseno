@@ -9,9 +9,16 @@ app.use(express.static(path.join(__dirname,'public')))
 app.use(morgan('dev'))
 
 app.get('/',(req,res)=>{
-    res.send('index.html')
+    res.redirect('/signin')
 })
 
+app.get('/signin',(req,res)=>{
+    res.sendFile('public/signin.html',{root:__dirname})
+})
+
+app.get('/signup',(req,res)=>{
+    res.sendFile('public/signup.html',{root:__dirname})
+})
 
 app.listen(app.get('port'),()=>{
     console.log(`listen on port ${app.get('port')}`)

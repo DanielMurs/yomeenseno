@@ -355,7 +355,8 @@ template {
       overflow: hidden;
       scroll-behavior: smooth;
       border-radius: 12px;
-      box-shadow: 0 3px 4px #4d5b8388; }
+      box-shadow: 0 3px 4px #4d5b8388;
+      max-width: 550px; }
       .main-section .hello-container .hello-carrusel .hello-group {
         display: flex;
         flex-direction: column;
@@ -383,28 +384,9 @@ template {
     .main-section .hello-buttons .hello-btns {
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-end;
+      justify-content: center;
+      align-items: center;
       padding: 1rem; }
-      .main-section .hello-buttons .hello-btns .btn-hello {
-        border-radius: 100px;
-        font-size: 16px;
-        border: none;
-        padding: 0.45rem 0.75rem;
-        background: #b0b9d1;
-        color: #303952;
-        box-shadow: 0px 4px 0 0 #7f8db4;
-        position: relative;
-        padding-top: 0.55rem; }
-        .main-section .hello-buttons .hello-btns .btn-hello:focus {
-          outline: none; }
-        .main-section .hello-buttons .hello-btns .btn-hello:active {
-          box-shadow: none;
-          top: 4px; }
-        .main-section .hello-buttons .hello-btns .btn-hello i {
-          text-align: center;
-          height: 16px;
-          width: 16px; }
       .main-section .hello-buttons .hello-btns .btn-cta {
         border-radius: 100px;
         font-size: 16px;
@@ -414,7 +396,13 @@ template {
         color: #fafbfc;
         box-shadow: 0px 4px 0 0 #1f3dcd;
         position: relative;
-        padding-top: 0.55rem; }
+        padding-top: 0.55rem;
+        text-decoration: none;
+        flex: 1 0 auto;
+        margin: 0 .5rem;
+        max-width: 320px;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem; }
         .main-section .hello-buttons .hello-btns .btn-cta:focus {
           outline: none; }
         .main-section .hello-buttons .hello-btns .btn-cta:active {
@@ -468,6 +456,7 @@ template {
       box-shadow: 0px 4px 0 0 #1eaa66;
       position: relative;
       padding-top: 0.55rem;
+      text-decoration: none;
       padding-left: 3rem;
       padding-right: 3rem; }
       .main-section .hello-login .form-login .form-submit:focus {
@@ -507,7 +496,8 @@ template {
         color: #fafbfc;
         box-shadow: 0px 4px 0 0 #eb5d20;
         position: relative;
-        padding-top: 0.55rem; }
+        padding-top: 0.55rem;
+        text-decoration: none; }
         .main-section .hello-login .buttonsSignup .signup:focus {
           outline: none; }
         .main-section .hello-login .buttonsSignup .signup:active {
@@ -522,7 +512,8 @@ template {
         color: #fafbfc;
         box-shadow: 0px 4px 0 0 #b0b9d1;
         position: relative;
-        padding-top: 0.55rem; }
+        padding-top: 0.55rem;
+        text-decoration: none; }
         .main-section .hello-login .buttonsSignup .google:focus, .main-section .hello-login .buttonsSignup .facebook:focus {
           outline: none; }
         .main-section .hello-login .buttonsSignup .google:active, .main-section .hello-login .buttonsSignup .facebook:active {
@@ -532,7 +523,7 @@ template {
         width: 16px;
         height: 16px;
         object-fit: contain; }
-  @media (orientation: landscape) {
+  @media (orientation: landscape) and (max-width: 549px) {
     .main-section .hello-container {
       flex: 1 0 auto; }
       .main-section .hello-container .tab-container {
@@ -555,3 +546,11 @@ template {
         .main-section .hello-buttons .hello-btns .btn-cta {
           padding-left: 1.50rem;
           padding-right: 1.50rem; } }
+  @media (min-width: 550px) {
+    .main-section .hello-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center; }
+    .main-section .hello-buttons .hello-btns .btn-hello, .main-section .hello-buttons .hello-btns .btn-cta {
+      flex: 0 0 auto; } }

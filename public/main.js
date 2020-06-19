@@ -3,8 +3,6 @@
 
 //elements
 const carousel     = document.getElementById('carrusel'),
-      leftButton   = document.getElementById('carrLeft'),
-      rightButton  = document.getElementById('carrRight'),
       indicators   = document.querySelectorAll('.tab-item')
 let   pageCarousel = 1
 
@@ -43,18 +41,6 @@ const runCarousel = (index)=>{
 for(let el of indicators){
     el.addEventListener('click',() => runIndicator(Array.from(indicators).indexOf(el) + 1) )
 }
-leftButton.addEventListener('click',()=>{
-    if(pageCarousel > 1){
-        pageCarousel -= 1;
-        runCarousel(pageCarousel)
-    }
-})
-rightButton.addEventListener('click',()=>{
-    if(pageCarousel < 3){
-        pageCarousel += 1;
-        runCarousel(pageCarousel)
-    }
-})
 
 ////login/////
 const btnLogin = document.getElementById('btnLogin')

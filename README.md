@@ -1,2 +1,0 @@
-# yomeenseno
-cursos en linea

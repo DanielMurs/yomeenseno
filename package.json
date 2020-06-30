@@ -1,0 +1,23 @@
+{
+  "name": "cursobeta",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx nodemon index.js",
+    "pug": "pug -w --pretty ./dev -o ./public",
+    "sass": "node-sass -w ./dev/styles/style.scss -o ./public"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "browserify": "^16.5.1",
+    "express": "^4.17.1",
+    "gulp": "^4.0.2",
+    "nodemon": "^2.0.4",
+    "page": "^1.11.6",
+    "path": "^0.12.7",
+    "vinyl-source-stream": "^2.0.0",
+    "yo-yo": "^1.4.1"
+  }
+}

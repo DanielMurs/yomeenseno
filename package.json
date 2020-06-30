@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start":"node index.js",
     "dev": "npx nodemon index.js",
     "pug": "pug -w --pretty ./dev -o ./public",
     "sass": "node-sass -w ./dev/styles/style.scss -o ./public"

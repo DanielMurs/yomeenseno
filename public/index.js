@@ -3,7 +3,7 @@ const yo = require('yo-yo')
 
 module.exports = (info) =>{
     return yo`
-        <a href="/cursos/${info.course}" class="card border-0 grid-12 grid-sm-6 grid-md-4 grid-lg-3 grid-xl-2">
+        <a href="/cursos/${info.course}" class="card grid-12 grid-sm-6 grid-md-4 grid-lg-3 grid-xl-2">
             <div class="card-image-container b-gris-gradient p-2">
                 <img src="${info.image}" class="card-image">
             </div>
@@ -16,7 +16,44 @@ module.exports = (info) =>{
         </a>
     `
 }
-},{"yo-yo":18}],2:[function(require,module,exports){
+},{"yo-yo":19}],2:[function(require,module,exports){
+const yo = require('yo-yo')
+
+const redes = [
+    {
+        icon:"fab fa-youtube",
+        url: "youtube.com"
+    },
+    {
+        icon:"fab fa-facebook",
+        url:"facebook.com"
+    },
+    {
+        icon:"fab fa-twitter",
+        url:"twitter.com"
+    },
+    {
+        icon:"fab fa-instagram",
+        url:"instagram.com"
+    }
+]
+
+    let footer = yo`
+        <footer class="footer">
+            <hr class="mx-8 b-gris mt-8">
+            <div class="footer-content p-8 px-sm-12 d-flex direction-column direction-md-row justify-center justify-md-between align-center">
+                <p class="footer-text px-2 mb-4 mb-md-0 c-darker">2020 cursos online. Ciudad de Mexico, Mexico.</p>
+                <div class="icons px-2">
+                    ${redes.map((el)=>{
+                        return yo`<a href="${el.url}" class="social-net-link d-inline-block p-2 b-darker border-radius c-lighter mr-2"><i class="${el.icon}"></i></a>`
+                    })}
+                </div>
+            </div>
+        </footer>
+    `
+
+document.body.appendChild(footer)
+},{"yo-yo":19}],3:[function(require,module,exports){
 const page = require('page')
 const nav = require ('../nav')
 const template = require('./template')
@@ -27,7 +64,7 @@ page('/',nav,(ctx,next)=>{
     document.title = 'homepage'
     main.appendChild(template())
 })
-},{"../nav":6,"./template":3,"page":16}],3:[function(require,module,exports){
+},{"../nav":7,"./template":4,"page":17}],4:[function(require,module,exports){
 const yo = require('yo-yo')
 const header = require('../main-header')
 const card = require('../card')
@@ -81,13 +118,27 @@ const arr = [
         teacher:'Moon Laferte'
     }
 ]
+const circlesBg = ['o','o','tw','tw','t','t']
+const categorias = ['Front-end','Back-end','desarrollo movil','redes',
+]
+
 
 module.exports = () =>{
+
     return yo`
         <div class="content">
             ${header()}
-            <div class="guide-container b-darker-gradient mb-4 mt-8 py-8 px-4 px-sm-6 px-lg-8">
-                <h2 class="section-title c-lighter mb-8">¿Que aprenderas con nosotos?</h2>
+            <section class="categorias pt-8 pb-4 px-4 px-sm-6 px-lg-8">
+                <h2 class="section-title c-dark mb-6 ml-sm-4">Categorias:</h2>
+                <div class="categorias-container ml-sm-4">
+                        ${categorias.map((el)=>{
+                            return yo`<a class="c-rosa-dark d-inline-block mb-4 border-1 border-rosa border-radius mr-6 px-4 py-2">${el}</a>`
+                        })}
+                </div>
+            </section>
+            <div class="guide-container b-darker-gradient mb-4 py-8 px-4 px-sm-6 px-lg-8">
+                
+                <h2 class="section-title text-center c-lighter mb-8">¿Que aprenderas con nosotos?</h2>
                 <div class="grid mb-2">
                     <div class="card grid-12 grid-md-4 mb-8 mb-md-0">
                         <div class="card-image-container p-2">
@@ -119,23 +170,26 @@ module.exports = () =>{
                 </div>
             </div>
             <div class="courses my-4 py-8 px-4 px-sm-6 px-lg-8">
-                <h2 class="section-title c-darker mb-8">Nuestros cursos mas populares:</h2>
+                <h2 class="section-title text-center c-darker mb-8">Nuestros cursos mas populares:</h2>
                 <div class="grid mb-2">
                     ${arr.map((el)=>{
                         return card(el)
                     })}
                 </div>
             </div>
-            <div class="personalized b-azul-light my-4 py-8 px-4 px-sm-6 px-lg-8">
+            <div class="personalized b-morado-gradient mt-4 py-8 px-4 px-sm-6 px-lg-8">
+                ${circlesBg.map((el)=>{
+                    return yo`<div class="bg-circle" style="top:${Math.ceil(Math.random() * 100)}%; left:${Math.ceil(Math.random() * 100)}%;"></div>`
+                })}
                     <div class="grid mb-2">
                         <div class="personalized-image p-4 grid-md-5 d-none d-md-block">
                             <img class="card-image" src="personal-info.svg">
                         </div>
-                        <div class="personalized-content  grid-12 grid-md-7">
+                        <div class="personalized-content grid-12 grid-md-7">
                             <div class="card border-0 p-4">
-                                <h3 class="card-title section-title mb-4 c-lighter text-center">¿Quieres una ayuda personalizada?</h3>
-                                <p class="card-text mb-6 c-dark text-center">ayudanos a conocerte y brindarte los mejores cursos para ti</p>
-                                <div class="text-center"><button class="btn btn-light">Iniciar ahora</button></div>
+                                <h3 class="card-title mb-4 c-lighter text-center">¿Quieres una ayuda personalizada?</h3>
+                                <p class="card-text mb-6 c-lighter text-center">ayudanos a conocerte y brindarte los mejores cursos para ti</p>
+                                <div class="text-center"><button class="btn btn-rojo">Iniciar ahora</button></div>
                             </div>
                         </div>
                     </div>
@@ -143,13 +197,14 @@ module.exports = () =>{
         </div>
     `
 }
-},{"../card":1,"../main-header":5,"yo-yo":18}],4:[function(require,module,exports){
+},{"../card":1,"../main-header":6,"yo-yo":19}],5:[function(require,module,exports){
 const page = require('page')
 
 require('./homepage')
+require('./footer')
 
 page()
-},{"./homepage":2,"page":16}],5:[function(require,module,exports){
+},{"./footer":2,"./homepage":3,"page":17}],6:[function(require,module,exports){
 const yo = require('yo-yo')
 
 module.exports = () =>{
@@ -250,25 +305,29 @@ module.exports = () =>{
         </div>
     `
 }
-},{"yo-yo":18}],6:[function(require,module,exports){
+},{"yo-yo":19}],7:[function(require,module,exports){
 const yo = require('yo-yo')
 
 let menuCollapse = () =>{
     let button = document.getElementById('btn-menu')
     let menu = document.getElementById(button.dataset.collapse)
+    let ghost = document.getElementById('ghost')
 
+    ghost.classList.toggle('d-none')
+    ghost.classList.toggle('active')
     menu.classList.toggle('nav-list-active')
     button.classList.toggle('is-nav-button-active')
 }
 
 let navContent = yo`
-    <div class="nav p-4 px-4 px-sm-6 px-lg-8 ">
-        <a href="/" class="nav-brand">logo</a>
+    <div class="nav b-lighter p-4 px-4 px-sm-6 px-lg-8 ">
+        <a href="/" class="nav-brand c-azul">logo</a>
         <button onclick=${menuCollapse} data-collapse="#menu" id="btn-menu" class="nav-button">
             <div class="nav-button-icon"></div>
             <div class="nav-button-icon"></div>
             <div class="nav-button-icon"></div>
         </button>
+        <div class="ghost d-none" id="ghost" onclick=${menuCollapse}></div>
         <ul class="nav-list" id="#menu">
             <li class="nav-item mx-4 my-4 my-md-0 mr-md-0 ml-md-4 py-2 px-4 search">
                 <input type="text" placeholder="busca cursos de tu interes..." class="search-input">
@@ -284,7 +343,7 @@ let navContent = yo`
                 <a href="/signin" class="btn btn-light">iniciar sesion</a>
             </li>
             <li class="nav-item px-4 py-6 py-md-0 pr-md-0 pl-md-4">
-                <a href="/signup" class="btn btn-durazno">registrate</a>
+                <a href="/signup" class="btn btn-azul">registrate</a>
             </li>           
         </ul>
     </div>
@@ -296,7 +355,7 @@ module.exports = (ctx,next) =>{
     nav.appendChild(navContent)
     next()
 }
-},{"yo-yo":18}],7:[function(require,module,exports){
+},{"yo-yo":19}],8:[function(require,module,exports){
 var document = require('global/document')
 var hyperx = require('hyperx')
 var onload = require('on-load')
@@ -451,9 +510,9 @@ module.exports = hyperx(belCreateElement, {comments: true})
 module.exports.default = module.exports
 module.exports.createElement = belCreateElement
 
-},{"global/document":9,"hyperx":12,"on-load":15}],8:[function(require,module,exports){
+},{"global/document":10,"hyperx":13,"on-load":16}],9:[function(require,module,exports){
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 (function (global){
 var topLevel = typeof global !== 'undefined' ? global :
     typeof window !== 'undefined' ? window : {}
@@ -474,7 +533,7 @@ if (typeof document !== 'undefined') {
 module.exports = doccy;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"min-document":8}],10:[function(require,module,exports){
+},{"min-document":9}],11:[function(require,module,exports){
 (function (global){
 var win;
 
@@ -491,7 +550,7 @@ if (typeof window !== "undefined") {
 module.exports = win;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 module.exports = attributeToProperty
 
 var transform = {
@@ -512,7 +571,7 @@ function attributeToProperty (h) {
   }
 }
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 var attrToProp = require('hyperscript-attribute-to-property')
 
 var VAR = 0, TEXT = 1, OPEN = 2, CLOSE = 3, ATTR = 4
@@ -809,7 +868,7 @@ var closeRE = RegExp('^(' + [
 ].join('|') + ')(?:[\.#][a-zA-Z0-9\u007F-\uFFFF_:-]+)*$')
 function selfClosing (tag) { return closeRE.test(tag) }
 
-},{"hyperscript-attribute-to-property":11}],13:[function(require,module,exports){
+},{"hyperscript-attribute-to-property":12}],14:[function(require,module,exports){
 'use strict';
 
 var DOCUMENT_FRAGMENT_NODE = 11;
@@ -1568,7 +1627,7 @@ var morphdom = morphdomFactory(morphAttrs);
 
 module.exports = morphdom;
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 assert.notEqual = notEqual
 assert.notOk = notOk
 assert.equal = equal
@@ -1592,7 +1651,7 @@ function assert (t, m) {
   if (!t) throw new Error(m || 'AssertionError')
 }
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 /* global MutationObserver */
 var document = require('global/document')
 var window = require('global/window')
@@ -1696,7 +1755,7 @@ function eachMutation (nodes, fn) {
   }
 }
 
-},{"assert":14,"global/document":9,"global/window":10}],16:[function(require,module,exports){
+},{"assert":15,"global/document":10,"global/window":11}],17:[function(require,module,exports){
 (function (process){
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
@@ -2924,7 +2983,7 @@ return page_js;
 })));
 
 }).call(this,require('_process'))
-},{"_process":17}],17:[function(require,module,exports){
+},{"_process":18}],18:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -3110,7 +3169,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 var bel = require('bel') // turns template tag into DOM elements
 var morphdom = require('morphdom') // efficiently diffs + morphs two DOM elements
 var defaultEvents = require('./update-events.js') // default events to be copied when dom elements update
@@ -3154,7 +3213,7 @@ module.exports.update = function (fromNode, toNode, opts) {
   }
 }
 
-},{"./update-events.js":19,"bel":7,"morphdom":13}],19:[function(require,module,exports){
+},{"./update-events.js":20,"bel":8,"morphdom":14}],20:[function(require,module,exports){
 module.exports = [
   // attribute events (can be set with attributes)
   'onclick',
@@ -3192,4 +3251,4 @@ module.exports = [
   'onfocusout'
 ]
 
-},{}]},{},[4]);
+},{}]},{},[5]);
